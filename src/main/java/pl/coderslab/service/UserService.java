@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.coderslab.model.User;
 import pl.coderslab.repository.UserRepository;
+import pl.coderslab.util.BCrypt;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -25,4 +26,8 @@ public class UserService {
     }
 
     public List<User> findAll() { return userRepository.findAll(); }
+
+    public String encryptPassword(String password) {
+        return BCrypt.hashpw(password, BCrypt.gensalt());
+    }
 }

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 public class HomeController {
 
     @GetMapping("/")
-    public String getPass() {
+    public String displayHome() {
         return "index";
     }
 

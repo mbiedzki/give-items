@@ -8,17 +8,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
-    <style>
-      <%@include file="css/style.css" %>
-    </style>
-    <%--<link rel="stylesheet" href="css/style.css" />--%>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css" />
   </head>
   <body>
     <header class="header--main-page">
       <nav class="container container--70">
         <ul class="nav--actions">
-          <li><a href="" class="btn btn--small btn--without-border">Zaloguj</a></li>
-          <li><a href="#" class="btn btn--small btn--highlighted">Załóż konto</a></li>
+          <li><a href="${pageContext.request.contextPath}/login" class="btn btn--small btn--without-border">Zaloguj</a></li>
+          <li><a href="${pageContext.request.contextPath}/register" class="btn btn--small btn--highlighted">Załóż konto</a></li>
         </ul>
 
         <ul>
@@ -253,11 +250,11 @@
       <div class="bottom-line">
         <span class="bottom-line--copy">Copyright &copy; 2018</span>
         <div class="bottom-line--icons">
-          <a href="#" class="btn btn--small"><img src="../../images/icon-facebook.svg"/></a> <a href="#" class="btn btn--small"><img src="../../images/icon-instagram.svg"/></a>
+          <a href="#" class="btn btn--small"><img src="${pageContext.request.contextPath}/resources/images/icon-facebook.svg"/></a> <a href="#" class="btn btn--small"><img src="${pageContext.request.contextPath}/resources/images/icon-instagram.svg"/></a>
         </div>
       </div>
     </footer>
 
-    <script src="js/app.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/app.js"></script>
   </body>
 </html>
