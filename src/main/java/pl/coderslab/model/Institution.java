@@ -17,6 +17,9 @@ public class Institution {
     private String description;
 
     @OneToOne
+    private Location location;
+
+    @OneToOne
     private Profile profile;
 
     public Long getId() {
@@ -43,6 +46,14 @@ public class Institution {
         this.description = description;
     }
 
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
     public Profile getProfile() {
         return profile;
     }
@@ -57,6 +68,7 @@ public class Institution {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
+                ", location=" + location +
                 ", profile=" + profile +
                 '}';
     }

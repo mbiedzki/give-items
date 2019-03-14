@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css" />
   </head>
   <body>
-    <header class="header--main-page">
+    <header class="header--main-page" id="start">
       <nav class="container container--70">
         <ul class="nav--actions">
           <li><a href="${pageContext.request.contextPath}/login" class="btn btn--small btn--without-border">Zaloguj</a></li>
@@ -19,11 +19,11 @@
         </ul>
 
         <ul>
-          <li><a href="#" class="btn btn--without-border active">Start</a></li>
-          <li><a href="#" class="btn btn--without-border">O co chodzi?</a></li>
-          <li><a href="#" class="btn btn--without-border">O nas</a></li>
-          <li><a href="#" class="btn btn--without-border">Fundacje i organizacje</a></li>
-          <li><a href="#" class="btn btn--without-border">Kontakt</a></li>
+          <li><a href="${pageContext.request.contextPath}/#start" class="btn btn--without-border active">Start</a></li>
+          <li><a href="${pageContext.request.contextPath}/#steps" class="btn btn--without-border">O co chodzi?</a></li>
+          <li><a href="${pageContext.request.contextPath}/#about" class="btn btn--without-border">O nas</a></li>
+          <li><a href="${pageContext.request.contextPath}/#fundations" class="btn btn--without-border">Fundacje i organizacje</a></li>
+          <li><a href="${pageContext.request.contextPath}/#contact" class="btn btn--without-border">Kontakt</a></li>
         </ul>
       </nav>
 
@@ -35,8 +35,8 @@
           </h1>
 
           <ul class="slogan--buttons">
-            <li><a href="#" class="btn btn--large">Oddaj rzeczy</a></li>
-            <li><a href="#" class="btn btn--large">Zorganizuj zbiórkę</a></li>
+            <li><a href="${pageContext.request.contextPath}/register" class="btn btn--large">Oddaj rzeczy</a></li>
+            <li><a href="${pageContext.request.contextPath}/register" class="btn btn--large">Zorganizuj zbiórkę</a></li>
           </ul>
         </div>
       </div>
@@ -64,7 +64,7 @@
       </div>
     </section>
 
-    <section class="steps">
+    <section class="steps" id="steps">
       <h2>Wystarczą 4 proste kroki</h2>
 
       <div class="steps--container">
@@ -90,19 +90,19 @@
         </div>
       </div>
 
-      <a href="#" class="btn btn--large">Załóż konto</a>
+      <a href="${pageContext.request.contextPath}/register" class="btn btn--large">Załóż konto</a>
     </section>
 
-    <section class="about-us">
+    <section class="about-us" id="about">
       <div class="about-us--text">
         <h2>O nas</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas vitae animi rem pariatur incidunt libero optio esse quisquam illo omnis.</p>
-        <img src="../../images/signature.svg" class="about-us--text-signature" alt="Signature" />
+        <img src="${pageContext.request.contextPath}/resources/images/signature.svg" class="about-us--text-signature" alt="Signature" />
       </div>
-      <div class="about-us--image"><img src="../../images/about-us.jpg" alt="People in circle" /></div>
+      <div class="about-us--image"><img src="${pageContext.request.contextPath}/resources//images/about-us.jpg" alt="People in circle" /></div>
     </section>
 
-    <section class="help">
+    <section class="help" id="fundations">
       <h2>Komu pomagamy?</h2>
 
       <ul class="help--buttons">
@@ -235,7 +235,7 @@
     </section>
 
     <footer>
-      <div class="contact">
+      <div class="contact" id="contact">
         <h2>Skontaktuj się z nami</h2>
         <h3>Formularz kontaktowy</h3>
         <form class="form--contact">
