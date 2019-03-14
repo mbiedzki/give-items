@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping(produces = "text/html; charset=UTF-8")
-@SessionAttributes({"passwordError", "emptyError", "userRegistered", "email", "password", "password2" })
+@SessionAttributes({"passwordError", "emptyError", "duplicateEmailError"})
 public class LoginController {
     @Autowired
     private UserService userService;
@@ -22,38 +22,49 @@ public class LoginController {
     }
 
    @GetMapping("/register")
-    public String displayRegister(Model model) {
-        model.addAttribute("email", "");
-        model.addAttribute("password", "");
-        model.addAttribute("password2", "");
+    public String displayRegister() {
         return "register";
     }
 
     @RequestMapping("/register")
     public String register(@RequestParam String email, @RequestParam String password, @RequestParam String password2, Model model, HttpSession session) {
+
+        model.addAttribute("emptyError", false);
+        model.addAttribute("passwordError", false);
+        model.addAttribute("duplicateEmailError", false);
+
+        //all fields must be filled in
         if(email.equals("") || password.equals("") || password2.equals("")) {
             model.addAttribute("emptyError", true);
             model.addAttribute("email", email);
             model.addAttribute("password", password);
             model.addAttribute("password2", password2);
-            return "redirect:/register";
+            return "register";
         }
 
+        //password strings must be identical
         if (!password.equals(password2)) {
             model.addAttribute("passwordError", true);
             model.addAttribute("email", email);
-            return "redirect:/register";
+            model.addAttribute("password", "");
+            model.addAttribute("password2", "");
+            return "register";
         }
 
-        //if email exists
+        //email must be unique from existing in database
+        if(userService.findUserByEmail(email)!=null) {
+            model.addAttribute("duplicateEmailError", true);
+            model.addAttribute("email", email);
+            model.addAttribute("password", password);
+            model.addAttribute("password2", password2);
+            return "register";
+        }
 
         User userToRegister = new User();
         userToRegister.setEmail(email);
         userToRegister.setAdmin(false);
         userToRegister.setPassword(userService.encryptPassword(password));
         userService.save(userToRegister);
-        model.addAttribute("userRegistered", true);
-
 
         return "redirect:/login";
     }

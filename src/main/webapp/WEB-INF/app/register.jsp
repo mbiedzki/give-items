@@ -50,6 +50,10 @@
             <p class="alert"> Podane hasła nie są takie same !</p>
         </c:if>
 
+        <c:if test="${duplicateEmailError==true}">
+            <p class="alert"> Podany email występuje już w bazie danych !</p>
+        </c:if>
+
         <div class="form-group form-group--buttons">
             <a href="login.jsp" class="btn btn--without-border">Zaloguj się</a>
             <button class="btn" type="submit">Załóż konto</button>

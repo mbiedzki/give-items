@@ -30,4 +30,9 @@ public class UserService {
     public String encryptPassword(String password) {
         return BCrypt.hashpw(password, BCrypt.gensalt());
     }
+
+    //search user by email to avoid duplicate user identification by email
+    public User findUserByEmail(String email) {
+        return userRepository.findUserByEmail(email);
+    }
 }
