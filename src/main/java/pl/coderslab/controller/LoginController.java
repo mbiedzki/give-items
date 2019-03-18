@@ -62,7 +62,7 @@ public class LoginController {
         model.addAttribute("admin", userToVerify.isAdmin());
         model.addAttribute("userId", userToVerify.getId());
         model.addAttribute("email", userToVerify.getEmail());
-        return "redirect:/donation/add";
+        return "redirect:/donation/add/1";
     }
 
 
