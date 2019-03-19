@@ -20,8 +20,6 @@ public class Donation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
-    @Min(1)
     private Long numberOfBags;
 
     @OneToOne
@@ -33,32 +31,19 @@ public class Donation {
     @OneToOne
     private Institution institution;
 
-    @NotBlank(message = " Podaj ulicę ! ")
-    private String street;
+    private String address;
 
-    @NotBlank(message = " Podaj numer domu ! ")
-    private String number;
-
-    private String apartment;
-
-    @NotNull
-    @Pattern(message = " Podaj kod pocztowy w formacie XX-XXX ! ", regexp="[0-9]{2}\\-[0-9]{3}")
     private String zip;
 
-    @NotBlank(message = " Podaj miasto ! ")
     private String city;
 
-    @NotBlank(message = "Pole nie może być puste")
-    @Pattern(message = " Podaj nr telefonu w formacie +48XXXXXXXXX ! ", regexp = "^\\+48\\d{9}$")
     private String phone;
 
-    @Column(name="pickupDate")
-    private LocalDate pickupDate;
+    private String pickupDate;
 
-    @Column(name="pickupTime")
-    private LocalTime pickupTime;
+    private String pickupTime;
 
-    private String comments;
+    private String info;
 
     public Long getId() {
         return id;
@@ -100,28 +85,12 @@ public class Donation {
         this.institution = institution;
     }
 
-    public String getStreet() {
-        return street;
+    public String getAddress() {
+        return address;
     }
 
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
-    public String getNumber() {
-        return number;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
-    }
-
-    public String getApartment() {
-        return apartment;
-    }
-
-    public void setApartment(String apartment) {
-        this.apartment = apartment;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getZip() {
@@ -148,28 +117,28 @@ public class Donation {
         this.phone = phone;
     }
 
-    public LocalDate getPickupDate() {
+    public String getPickupDate() {
         return pickupDate;
     }
 
-    public void setPickupDate(LocalDate pickupDate) {
+    public void setPickupDate(String pickupDate) {
         this.pickupDate = pickupDate;
     }
 
-    public LocalTime getPickupTime() {
+    public String getPickupTime() {
         return pickupTime;
     }
 
-    public void setPickupTime(LocalTime pickupTime) {
+    public void setPickupTime(String pickupTime) {
         this.pickupTime = pickupTime;
     }
 
-    public String getComments() {
-        return comments;
+    public String getInfo() {
+        return info;
     }
 
-    public void setComments(String comments) {
-        this.comments = comments;
+    public void setInfo(String info) {
+        this.info = info;
     }
 
     @Override
@@ -180,16 +149,13 @@ public class Donation {
                 ", item=" + item +
                 ", profile=" + profile +
                 ", institution=" + institution +
-                ", street='" + street + '\'' +
-                ", number='" + number + '\'' +
-                ", apartment='" + apartment + '\'' +
+                ", address='" + address + '\'' +
                 ", zip='" + zip + '\'' +
                 ", city='" + city + '\'' +
                 ", phone='" + phone + '\'' +
-                ", pickupDate=" + pickupDate +
-                ", pickupTime=" + pickupTime +
-                ", comments='" + comments + '\'' +
+                ", pickupDate='" + pickupDate + '\'' +
+                ", pickupTime='" + pickupTime + '\'' +
+                ", info='" + info + '\'' +
                 '}';
     }
-
 }

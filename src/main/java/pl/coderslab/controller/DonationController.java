@@ -14,7 +14,8 @@ import java.util.List;
 
 @Controller
 @RequestMapping(path="/donation", produces = "text/html; charset=UTF-8")
-@SessionAttributes({"selectedItemId", "selectedProfileId", "selectedLocationId", "selectedInstitutionId", "numberOfBags", "noMatch"})
+@SessionAttributes({"selectedItemId", "selectedProfileId", "selectedLocationId", "selectedInstitutionId",
+        "numberOfBags", "noMatch", "donation", "address", "city", "zip", "phone", "date", "time", "info"})
 public class DonationController {
     @Autowired
     private DonationService donationService;
@@ -123,11 +124,31 @@ public class DonationController {
                                   @RequestParam String info,
                                   Model model, HttpSession session) {
 
-        //check on institution !!!
+        model.addAttribute("address", address);
+        model.addAttribute("city", city);
+        model.addAttribute("zip", zip);
+        model.addAttribute("phone", phone);
+        model.addAttribute("date", date);
+        model.addAttribute("time", time);
+        model.addAttribute("info", info);
+
+
 
         Donation donation = new Donation();
 
+        donation.setAddress(address);
+        donation.setCity(city);
+        donation.setZip(zip);
+        donation.setPhone(phone);
+        donation.setPickupDate(date);
+        donation.setPickupTime(time);
+        donation.setInfo(info);
+        donation.setItem(itemService.findOne((Long) session.getAttribute("selectedItemId")));
+        donation.setProfile(profileService.findOne((Long) session.getAttribute("selectedProfileId")));
+        donation.setInstitution(institutionService.findOne((Long) session.getAttribute("selectedInstitutionId")));
+        donation.setNumberOfBags((Long) session.getAttribute("numberOfBags"));
 
+        model.addAttribute("donation", donation);
 
         return "redirect:/donation/add/6";
     }
@@ -140,15 +161,29 @@ public class DonationController {
     }
 
     @RequestMapping("/add/6")
-    public String createDonation6(Model model, HttpSession session) {
-
+    public String createDonation6(@Valid Donation donation, Model model, HttpSession session) {
+        donationService.save(donation);
         return "redirect:/donation/add/7";
     }
 
     // add form 7 summary *******************************************************************************
     @GetMapping("/add/7")
     public String displayDonationForm7(Model model, HttpSession session) {
-//wyczyść sesję !!!
+
+        model.addAttribute("address", "");
+        model.addAttribute("city", "");
+        model.addAttribute("zip", "");
+        model.addAttribute("phone", "");
+        model.addAttribute("date", "");
+        model.addAttribute("time", "");
+        model.addAttribute("info", "");
+        model.addAttribute("selectedItemId", 0);
+        model.addAttribute("numberOfBags", 0);
+        model.addAttribute("selectedLocationId", 0);
+        model.addAttribute("selectedProfileId", 0);
+        model.addAttribute("noMatch", false );
+        model.addAttribute("selectedInstitutionId", 0);
+
         return "donation7";
     }
 

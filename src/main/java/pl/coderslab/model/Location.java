@@ -11,7 +11,6 @@ public class Location {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Podaj lokalizację !")
     private String name;
 
     public Long getId() {

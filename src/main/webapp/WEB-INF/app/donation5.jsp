@@ -18,7 +18,7 @@
     {
         timepicker.load({
             interval: 60,
-            defaultHour: 0,
+            defaultHour: 9,
         });
     });
 </script>
@@ -54,22 +54,22 @@
                         <div class="form-section--column">
                             <h4>Adres odbioru</h4>
                             <div class="form-group form-group--inline">
-                                <label> Ulica <input type="text" name="address" required/> </label>
+                                <label> Ulica, numer domu i mieszkania<input type="text" name="address" value="${address}" required/> </label>
                             </div>
 
                             <div class="form-group form-group--inline">
-                                <label> Miasto <input type="text" name="city" required/> </label>
+                                <label> Miasto <input type="text" name="city" value="${city}" required/> </label>
                             </div>
 
                             <div class="form-group form-group--inline">
                                 <label>
-                                    Kod pocztowy <input type="text" name="zip" required pattern="\d{2}-\d{3}" placeholder="xx-xxx"/>
+                                    Kod pocztowy <input type="text" name="zip" value="${zip}" required pattern="\d{2}-\d{3}" placeholder="xx-xxx"/>
                                 </label>
                             </div>
 
                             <div class="form-group form-group--inline">
                                 <label>
-                                    Numer telefonu <input type="phone" name="phone" required pattern="^\d{9}" placeholder="XXXXXXXXX"/>
+                                    Numer telefonu <input type="phone" name="phone" value="${phone}" required pattern="^\d{9}" placeholder="XXXXXXXXX"/>
                                 </label>
                             </div>
                         </div>
@@ -77,17 +77,16 @@
                         <div class="form-section--column">
                             <h4>Termin odbioru</h4>
                             <div class="form-group form-group--inline">
-                                <label> Data <input type="text" required class="datepicker" name="date"/> </label>
+                                <label> Data <input type="text" required class="datepicker" value="${date}" name="date"/> </label>
                             </div>
 
                             <div class="form-group form-group--inline">
-                                <label> Godzina <input type="text" required name="time" data-toggle="timepicker"/> </label>
+                                <label> Godzina <input type="text" required name="time" value="${time}" data-toggle="timepicker"/> </label>
                             </div>
 
                             <div class="form-group form-group--inline">
                                 <label>
-                                    Uwagi dla kuriera
-                                    <textarea name="info" rows="5"></textarea>
+                                    Uwagi dla kuriera <input type="text" name="info" value="${info}" size="25">
                                 </label>
                             </div>
                         </div>

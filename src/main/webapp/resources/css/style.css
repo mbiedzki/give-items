@@ -8,6 +8,10 @@
  */
 /* line 11, scss/vendor/_normalize.scss */
 
+.error {
+  color: red;
+}
+
 .alert {
   color: red;
   font-size: large;

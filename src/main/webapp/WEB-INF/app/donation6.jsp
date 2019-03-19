@@ -38,47 +38,29 @@
                 <div data-step="6" class="active">
                     <h3>Podsumowanie Twojej darowizny</h3>
 
-                    <div class="summary">
-                        <div class="form-section">
-                            <h4>Oddajesz:</h4>
-                            <ul>
-                                <li>
-                                    <span class="icon icon-bag"></span>
-                                    <span class="summary--text"
-                                    >4 worki ubrań w dobrym stanie dla dzieci</span
-                                    >
-                                </li>
+                    <h1>
+                    <form:form method="post" modelAttribute="donation">
 
-                                <li>
-                                    <span class="icon icon-hand"></span>
-                                    <span class="summary--text"
-                                    >Dla fundacji "Mam marzenie" w Warszawie</span
-                                    >
-                                </li>
-                            </ul>
-                        </div>
+                        Instytucja: <form:input path="institution.name"/><br>
+                        Profil: <form:input path="profile.name"/>
+                        <hr>
+                    </h1>
 
-                        <div class="form-section form-section--columns">
-                            <div class="form-section--column">
-                                <h4>Adres odbioru:</h4>
-                                <ul>
-                                    <li>Prosta 51</li>
-                                    <li>Warszawa</li>
-                                    <li>99-098</li>
-                                    <li>123 456 789</li>
-                                </ul>
-                            </div>
+                        <h3>Dane miejsca odbioru</h3>
 
-                            <div class="form-section--column">
-                                <h4>Termin odbioru:</h4>
-                                <ul>
-                                    <li>13/12/2018</li>
-                                    <li>15:40</li>
-                                    <li>Brak uwag</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                    <h1>
+                        Liczba worków: <form:input path="numberOfBags"/><br>
+                        Ulica i nr domu: <form:input path="address"/><br>
+                        Kod: <form:input path="zip"/><br>
+                        Miasto: <form:input path="city"/><br>
+                        Telefon: <form:input path="phone"/><br>
+                        Data odbioru: <form:input path="pickupDate"/><br>
+                        Czas odbioru: <form:input path="pickupTime"/><br>
+                        Uwagi dla kuriera: <form:input path="info"/>
+                    </h1>
+
+
+                    </form:form>
 
                     <div>
                         <a href="${pageContext.request.contextPath}/donation/add/5" class="btn">Powrót</a>
