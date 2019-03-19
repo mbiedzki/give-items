@@ -23,63 +23,61 @@
     </nav>
 </header>
 
-    <section class="form--steps">
-        <div class="form--steps-instructions">
-            <div class="form--steps-container">
-                <h3>Ważne!</h3>
-                <p data-step="4" class="active">
-                    Na podstawie Twoich kryteriów oraz rzeczy, które masz do oddania
-                    wybraliśmy organizacje, którym możesz pomóc. Wybierz jedną, do
-                    której trafi Twoja przesyłka.
-                </p>
-            </div>
-        </div>
-
+<section class="form--steps">
+    <div class="form--steps-instructions">
         <div class="form--steps-container">
-            <div class="form--steps-counter">Krok <span>4</span>/5</div>
-
-            <form method="post">
-                <!-- STEP 4 -->
-                <div data-step="4" class="active">
-                    <h3>Wybierz organizację, której chcesz pomóc:</h3>
-
-                    <div class="form-group form-group--checkbox">
-                        <label>
-                            <input type="radio" name="organization" value="old" />
-                            <span class="checkbox radio"></span>
-                            <span class="description">
-                  <div class="title">Fundacja “Bez domu”</div>
-                  <div class="subtitle">
-                    Cel i misja: Pomoc dla osób nie posiadających miejsca
-                    zamieszkania
-                  </div>
-                </span>
-                        </label>
-                    </div>
-
-                    <div class="form-group form-group--checkbox">
-                        <label>
-                            <input type="radio" name="organization" value="old" />
-                            <span class="checkbox radio"></span>
-                            <span class="description">
-                  <div class="title">Fundacja “Dla dzieci"</div>
-                  <div class="subtitle">
-                    Cel i misja: Pomoc osobom znajdującym się w trudnej sytuacji
-                    życiowej.
-                  </div>
-                </span>
-                        </label>
-                    </div>
-
-                    <div>
-                        <a href="${pageContext.request.contextPath}/donation/add/3" class="btn">Powrót</a>
-                        <button class="btn" type="submit">Dalej</button>
-                    </div>
-                </div>
-
-            </form>
+            <c:if test="${noMatch==false}">
+            <h3>Ważne!</h3>
+            <p data-step="4" class="active">
+                Na podstawie Twoich kryteriów oraz rzeczy, które masz do oddania
+                wybraliśmy organizacje, którym możesz pomóc. Wybierz jedną, do
+                której trafi Twoja przesyłka.
+                </c:if>
+                <c:if test="${noMatch==true}">
+            <h3>Na podstawie Twoich kryteriów nie znaleźliźmy żadnej organizacji w naszej bazie danych.
+                Podaj pozostałe dane, a my postaramy się znaleźć odpowiednią organizację - o wszystkim poinformujemy
+                !</h3>
+            </c:if>
+            </p>
         </div>
-    </section>
+    </div>
+
+    <div class="form--steps-container">
+        <div class="form--steps-counter">Krok <span>4</span>/5</div>
+
+
+        <form method="post">
+            <!-- STEP 4 -->
+            <div data-step="4" class="active">
+
+                <h3>Wybierz organizację, której chcesz pomóc:</h3>
+                <h1>
+                    <select name="chooseInstitution" size="4" required>
+                        <c:if test="${noMatch==true}">
+                            <option selected value="0" label="brak instytucji spełniającej kryteria"></option>
+                        </c:if>
+
+                        <c:if test="${noMatch==false}">
+                            <c:forEach items="${institutions}" var="institution">
+                                <option value="${institution.id}"
+                                        <c:if test="${institution.id==selectedInstitutionId}">selected</c:if>
+                                >${institution.name}</option>
+                            </c:forEach>
+                        </c:if>
+                    </select>
+                </h1>
+
+
+                <div>
+                    <a href="${pageContext.request.contextPath}/donation/add/3" class="btn">Powrót</a>
+                    <button class="btn" type="submit">Dalej</button>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+</section>
 
 </body>
 </html>

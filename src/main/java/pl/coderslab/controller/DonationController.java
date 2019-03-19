@@ -14,7 +14,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping(path="/donation", produces = "text/html; charset=UTF-8")
-@SessionAttributes({"selectedItemId", "selectedProfileId", "selectedLocationId", "selectedInstitutionId", "numberOfBags"})
+@SessionAttributes({"selectedItemId", "selectedProfileId", "selectedLocationId", "selectedInstitutionId", "numberOfBags", "noMatch"})
 public class DonationController {
     @Autowired
     private DonationService donationService;
@@ -43,11 +43,6 @@ public class DonationController {
         return itemService.findAll();
     }
 
-    @ModelAttribute("institutions")
-    public List<Institution> getInstitutions() {
-        return institutionService.findAll();
-    }
-
     // add form 1 *******************************************************************************
     @GetMapping("/add/1")
     public String displayDonationForm1(Model model, HttpSession session) {
@@ -57,7 +52,7 @@ public class DonationController {
 
     @RequestMapping("/add/1")
     public String createDonation1(@RequestParam String chooseItem, Model model, HttpSession session) {
-        model.addAttribute("selectedItemId", Integer.parseInt(chooseItem));
+        model.addAttribute("selectedItemId", Long.parseLong(chooseItem));
         return "redirect:/donation/add/2";
     }
 
@@ -70,7 +65,7 @@ public class DonationController {
 
     @RequestMapping("/add/2")
     public String createDonation2(@RequestParam String chooseBags, Model model, HttpSession session) {
-        model.addAttribute("numberOfBags", Integer.parseInt(chooseBags));
+        model.addAttribute("numberOfBags", Long.parseLong(chooseBags));
         return "redirect:/donation/add/3";
     }
 
@@ -83,21 +78,31 @@ public class DonationController {
 
     @RequestMapping("/add/3")
     public String createDonation3(@RequestParam String chooseLocation, @RequestParam String chooseProfile, Model model, HttpSession session) {
-        model.addAttribute("selectedLocationId", Integer.parseInt(chooseLocation));
-        model.addAttribute("selectedProfileId", Integer.parseInt(chooseProfile));
+        model.addAttribute("selectedLocationId", Long.parseLong(chooseLocation));
+        model.addAttribute("selectedProfileId", Long.parseLong(chooseProfile));
+        model.addAttribute("noMatch", false );
         return "redirect:/donation/add/4";
     }
 
     // add form 4 *******************************************************************************
     @GetMapping("/add/4")
     public String displayDonationForm4(Model model, HttpSession session) {
+        Long locationId = (Long) session.getAttribute("selectedLocationId");
+        Long profileId = (Long) session.getAttribute("selectedProfileId");
 
+        //validation if no institution matches criteria
+        if(institutionService.findByLocationAndProfile(locationId, profileId).size()==0) {
+            model.addAttribute("noMatch", true );
+            return "donation4";
+        }
+
+        model.addAttribute("institutions", institutionService.findByLocationAndProfile(locationId, profileId));
         return "donation4";
     }
 
     @RequestMapping("/add/4")
-    public String createDonation4(Model model, HttpSession session) {
-
+    public String createDonation4(@RequestParam String chooseInstitution, Model model, HttpSession session) {
+        model.addAttribute("selectedInstitutionId", Long.parseLong(chooseInstitution));
         return "redirect:/donation/add/5";
     }
 
@@ -109,7 +114,20 @@ public class DonationController {
     }
 
     @RequestMapping("/add/5")
-    public String createDonation5(Model model, HttpSession session) {
+    public String createDonation5(@RequestParam String address,
+                                  @RequestParam String city,
+                                  @RequestParam String zip,
+                                  @RequestParam String phone,
+                                  @RequestParam String date,
+                                  @RequestParam String time,
+                                  @RequestParam String info,
+                                  Model model, HttpSession session) {
+
+        //check on institution !!!
+
+        Donation donation = new Donation();
+
+
 
         return "redirect:/donation/add/6";
     }

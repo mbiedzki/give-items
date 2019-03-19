@@ -37,28 +37,28 @@
             <form method="post">
                 <!-- STEP 5 -->
                 <div data-step="5" class="active">
-                    <h3>Podaj adres oraz termin odbioru rzecz przez kuriera:</h3>
+                    <h3>Podaj adres oraz termin odbioru rzeczy przez kuriera:</h3>
 
                     <div class="form-section form-section--columns">
                         <div class="form-section--column">
                             <h4>Adres odbioru</h4>
                             <div class="form-group form-group--inline">
-                                <label> Ulica <input type="text" name="address" /> </label>
+                                <label> Ulica <input type="text" name="address" required/> </label>
                             </div>
 
                             <div class="form-group form-group--inline">
-                                <label> Miasto <input type="text" name="city" /> </label>
+                                <label> Miasto <input type="text" name="city" required/> </label>
                             </div>
 
                             <div class="form-group form-group--inline">
                                 <label>
-                                    Kod pocztowy <input type="text" name="postcode" />
+                                    Kod pocztowy <input type="text" name="zip" required/>
                                 </label>
                             </div>
 
                             <div class="form-group form-group--inline">
                                 <label>
-                                    Numer telefonu <input type="phone" name="phone" />
+                                    Numer telefonu <input type="phone" name="phone" required/>
                                 </label>
                             </div>
                         </div>
@@ -66,17 +66,17 @@
                         <div class="form-section--column">
                             <h4>Termin odbioru</h4>
                             <div class="form-group form-group--inline">
-                                <label> Data <input type="date" name="data" /> </label>
+                                <label> Data <input type="date" name="date" required/> </label>
                             </div>
 
                             <div class="form-group form-group--inline">
-                                <label> Godzina <input type="time" name="time" /> </label>
+                                <label> Godzina <input type="time" name="time" required/> </label>
                             </div>
 
                             <div class="form-group form-group--inline">
                                 <label>
                                     Uwagi dla kuriera
-                                    <textarea name="more_info" rows="5"></textarea>
+                                    <textarea name="info" rows="5"></textarea>
                                 </label>
                             </div>
                         </div>
@@ -92,6 +92,7 @@
             </form>
         </div>
     </section>
+
 
 </body>
 </html>

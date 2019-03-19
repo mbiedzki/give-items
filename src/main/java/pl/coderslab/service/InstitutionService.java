@@ -26,4 +26,9 @@ public class InstitutionService {
 
     public List<Institution> findAll() { return institutionRepository.findAll(); }
 
+    public List<Institution> findByLocationAndProfile(Long locationId, Long profileId) {
+
+        return institutionRepository.findInstitutionByLocationIdAndProfileId(locationId, profileId);
+    }
+
 }
