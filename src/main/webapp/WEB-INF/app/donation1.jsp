@@ -40,10 +40,14 @@
         <form method="post">
             <!-- STEP 1: class .active is switching steps -->
             <div data-step="1" class="active">
-                <h3>Wybierz z listy co chcesz oddać:<br></h3>
-                <h3>
-
-                </h3>
+                <h3>Wybierz rodzaj rzeczy jakie chcesz oddać:<br></h3>
+                <h1>
+                    <select name="chooseItem" size="4" required>
+                        <c:forEach items="${items}" var="item">
+                        <option value="${item.id}"  <c:if test="${item.id==selectedItemId}">selected</c:if>   >${item.name}</option>
+                        </c:forEach>
+                    </select>
+                </h1>
                 <div>
                     <button class="btn" type="submit">Dalej</button>
                 </div>

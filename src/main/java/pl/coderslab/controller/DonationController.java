@@ -14,7 +14,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping(path="/donation", produces = "text/html; charset=UTF-8")
-@SessionAttributes({"selectedItemId", "selectedProfileId", "selectedInstitutionId"})
+@SessionAttributes({"selectedItemId", "selectedProfileId", "selectedLocationId", "selectedInstitutionId", "numberOfBags"})
 public class DonationController {
     @Autowired
     private DonationService donationService;
@@ -56,8 +56,8 @@ public class DonationController {
     }
 
     @RequestMapping("/add/1")
-    public String createDonation1(Model model, HttpSession session) {
-
+    public String createDonation1(@RequestParam String chooseItem, Model model, HttpSession session) {
+        model.addAttribute("selectedItemId", Integer.parseInt(chooseItem));
         return "redirect:/donation/add/2";
     }
 
@@ -69,8 +69,8 @@ public class DonationController {
     }
 
     @RequestMapping("/add/2")
-    public String createDonation2(Model model, HttpSession session) {
-
+    public String createDonation2(@RequestParam String chooseBags, Model model, HttpSession session) {
+        model.addAttribute("numberOfBags", Integer.parseInt(chooseBags));
         return "redirect:/donation/add/3";
     }
 
@@ -82,8 +82,9 @@ public class DonationController {
     }
 
     @RequestMapping("/add/3")
-    public String createDonation3(Model model, HttpSession session) {
-
+    public String createDonation3(@RequestParam String chooseLocation, @RequestParam String chooseProfile, Model model, HttpSession session) {
+        model.addAttribute("selectedLocationId", Integer.parseInt(chooseLocation));
+        model.addAttribute("selectedProfileId", Integer.parseInt(chooseProfile));
         return "redirect:/donation/add/4";
     }
 

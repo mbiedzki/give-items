@@ -30,7 +30,7 @@
                 <p data-step="3" class="active">
                     Możesz wybrać lokalizację w której chcesz przekazać dary oraz grupę docelową, którą chcesz obdarować.
                     Na następnej stronie wyświetlimy listę organizacji spełniających Twoje kryteria.
-                    Możesz też wybrać organizację z listy poniżej.
+                    Jeżeli niczego nie zaznaczysz to wyświetlimy listę wszystkih organizacji.
                 </p>
             </div>
         </div>
@@ -42,58 +42,21 @@
                 <!-- STEP 3 -->
                 <div data-step="3" class="active">
                     <h3>Lokalizacja:</h3>
-
-                    <div class="form-group form-group--dropdown">
-                        <select name="localization">
-                            <option value="0">- wybierz -</option>
-                            <option value="warsaw">Warszawa</option>
-                            <option value="wroclaw">Wrocław</option>
-                            <option value="poznan">Poznań</option>
-                            <option value="gdansk">Gdańsk</option>
+                    <h1>
+                        <select name="chooseLocation" size="4" required>
+                            <c:forEach items="${locations}" var="location">
+                                <option value="${location.id}"  <c:if test="${location.id==selectedLocationId}">selected</c:if>   >${location.name}</option>
+                            </c:forEach>
                         </select>
-                    </div>
-
-                    <div class="form-section">
-                        <h4>Komu chcesz pomóc?</h4>
-                        <div class="form-section--checkboxes">
-                            <div class="form-group form-group--checkbox">
-                                <label>
-                                    <input type="checkbox" name="help[]" value="children" />
-                                    <span class="checkbox">dzieciom</span>
-                                </label>
-                            </div>
-
-                            <div class="form-group form-group--checkbox">
-                                <label>
-                                    <input type="checkbox" name="help[]" value="mothers" />
-                                    <span class="checkbox">samotnym matkom</span>
-                                </label>
-                            </div>
-
-                            <div class="form-group form-group--checkbox">
-                                <label>
-                                    <input type="checkbox" name="help[]" value="homeless" />
-                                    <span class="checkbox">bezdomnym</span>
-                                </label>
-                            </div>
-
-                            <div class="form-group form-group--checkbox">
-                                <label>
-                                    <input type="checkbox" name="help[]" value="disabled" />
-                                    <span class="checkbox">niepełnosprawnym</span>
-                                </label>
-                            </div>
-
-                            <div class="form-group form-group--checkbox">
-                                <label>
-                                    <input type="checkbox" name="help[]" value="old" />
-                                    <span class="checkbox">osobom starszym</span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
-
+                    </h1>
+                    <h3>Grupa docelowa:</h3>
+                    <h1>
+                        <select name="chooseProfile" size="4" required>
+                            <c:forEach items="${profiles}" var="profile">
+                                <option value="${profile.id}"  <c:if test="${profile.id==selectedProfileId}">selected</c:if>   >${profile.name}</option>
+                            </c:forEach>
+                        </select>
+                    </h1>
                     <div>
                         <a href="${pageContext.request.contextPath}/donation/add/2" class="btn">Powrót</a>
                         <button class="btn" type="submit">Dalej</button>
