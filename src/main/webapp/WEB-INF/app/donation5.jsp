@@ -9,8 +9,19 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title>Document</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/datepicker.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/timepicker.min.css"/>
 </head>
 <body>
+<script>
+    document.addEventListener("DOMContentLoaded", function(event)
+    {
+        timepicker.load({
+            interval: 60,
+            defaultHour: 0,
+        });
+    });
+</script>
 <header>
     <nav class="container container--70">
         <ul>
@@ -52,13 +63,13 @@
 
                             <div class="form-group form-group--inline">
                                 <label>
-                                    Kod pocztowy <input type="text" name="zip" required/>
+                                    Kod pocztowy <input type="text" name="zip" required pattern="\d{2}-\d{3}" placeholder="xx-xxx"/>
                                 </label>
                             </div>
 
                             <div class="form-group form-group--inline">
                                 <label>
-                                    Numer telefonu <input type="phone" name="phone" required/>
+                                    Numer telefonu <input type="phone" name="phone" required pattern="^\d{9}" placeholder="XXXXXXXXX"/>
                                 </label>
                             </div>
                         </div>
@@ -66,11 +77,11 @@
                         <div class="form-section--column">
                             <h4>Termin odbioru</h4>
                             <div class="form-group form-group--inline">
-                                <label> Data <input type="date" name="date" required/> </label>
+                                <label> Data <input type="text" required class="datepicker" name="date"/> </label>
                             </div>
 
                             <div class="form-group form-group--inline">
-                                <label> Godzina <input type="time" name="time" required/> </label>
+                                <label> Godzina <input type="text" required name="time" data-toggle="timepicker"/> </label>
                             </div>
 
                             <div class="form-group form-group--inline">
@@ -93,6 +104,7 @@
         </div>
     </section>
 
-
+<script src="${pageContext.request.contextPath}/resources/js/datepicker.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/timepicker.min.js"></script>
 </body>
 </html>
