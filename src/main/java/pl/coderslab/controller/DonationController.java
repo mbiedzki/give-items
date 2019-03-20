@@ -15,7 +15,8 @@ import java.util.List;
 @Controller
 @RequestMapping(path="/donation", produces = "text/html; charset=UTF-8")
 @SessionAttributes({"selectedItemId", "selectedProfileId", "selectedLocationId", "selectedInstitutionId",
-        "numberOfBags", "noMatch", "donation", "address", "city", "zip", "phone", "date", "time", "info"})
+        "selectedNumberOfBags", "noMatch", "donation", "selectedAddress", "selectedCity", "selectedZip", "selectedPhone",
+        "selectedDate", "selectedTime", "selectedInfo"})
 public class DonationController {
     @Autowired
     private DonationService donationService;
@@ -66,7 +67,7 @@ public class DonationController {
 
     @RequestMapping("/add/2")
     public String createDonation2(@RequestParam String chooseBags, Model model, HttpSession session) {
-        model.addAttribute("numberOfBags", Long.parseLong(chooseBags));
+        model.addAttribute("selectedNumberOfBags", Long.parseLong(chooseBags));
         return "redirect:/donation/add/3";
     }
 
@@ -124,13 +125,13 @@ public class DonationController {
                                   @RequestParam String selInfo,
                                   Model model, HttpSession session) {
 
-        model.addAttribute("address", selAddress);
-        model.addAttribute("city", selCity);
-        model.addAttribute("zip", selZip);
-        model.addAttribute("phone", selPhone);
-        model.addAttribute("date", selDate);
-        model.addAttribute("time", selTime);
-        model.addAttribute("info", selInfo);
+        model.addAttribute("selectedAddress", selAddress);
+        model.addAttribute("selectedCity", selCity);
+        model.addAttribute("selectedZip", selZip);
+        model.addAttribute("selectedPhone", selPhone);
+        model.addAttribute("selectedDate", selDate);
+        model.addAttribute("selectedTime", selTime);
+        model.addAttribute("selectedInfo", selInfo);
 
 
 
@@ -145,7 +146,7 @@ public class DonationController {
         donation.setInfo(selInfo);
         donation.setItem(itemService.findOne((Long) session.getAttribute("selectedItemId")));
         donation.setProfile(profileService.findOne((Long) session.getAttribute("selectedProfileId")));
-        donation.setNumberOfBags((Long) session.getAttribute("numberOfBags"));
+        donation.setNumberOfBags((Long) session.getAttribute("selectedNumberOfBags"));
 
         //check if there is matching institution
 
