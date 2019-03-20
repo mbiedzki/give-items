@@ -115,38 +115,42 @@ public class DonationController {
     }
 
     @RequestMapping("/add/5")
-    public String createDonation5(@RequestParam String address,
-                                  @RequestParam String city,
-                                  @RequestParam String zip,
-                                  @RequestParam String phone,
-                                  @RequestParam String date,
-                                  @RequestParam String time,
-                                  @RequestParam String info,
+    public String createDonation5(@RequestParam String selAddress,
+                                  @RequestParam String selCity,
+                                  @RequestParam String selZip,
+                                  @RequestParam String selPhone,
+                                  @RequestParam String selDate,
+                                  @RequestParam String selTime,
+                                  @RequestParam String selInfo,
                                   Model model, HttpSession session) {
 
-        model.addAttribute("address", address);
-        model.addAttribute("city", city);
-        model.addAttribute("zip", zip);
-        model.addAttribute("phone", phone);
-        model.addAttribute("date", date);
-        model.addAttribute("time", time);
-        model.addAttribute("info", info);
+        model.addAttribute("address", selAddress);
+        model.addAttribute("city", selCity);
+        model.addAttribute("zip", selZip);
+        model.addAttribute("phone", selPhone);
+        model.addAttribute("date", selDate);
+        model.addAttribute("time", selTime);
+        model.addAttribute("info", selInfo);
 
 
 
         Donation donation = new Donation();
 
-        donation.setAddress(address);
-        donation.setCity(city);
-        donation.setZip(zip);
-        donation.setPhone(phone);
-        donation.setPickupDate(date);
-        donation.setPickupTime(time);
-        donation.setInfo(info);
+        donation.setAddress(selAddress);
+        donation.setCity(selCity);
+        donation.setZip(selZip);
+        donation.setPhone(selPhone);
+        donation.setPickupDate(selDate);
+        donation.setPickupTime(selTime);
+        donation.setInfo(selInfo);
         donation.setItem(itemService.findOne((Long) session.getAttribute("selectedItemId")));
         donation.setProfile(profileService.findOne((Long) session.getAttribute("selectedProfileId")));
-        donation.setInstitution(institutionService.findOne((Long) session.getAttribute("selectedInstitutionId")));
         donation.setNumberOfBags((Long) session.getAttribute("numberOfBags"));
+
+        //check if there is matching institution
+
+        donation.setInstitution(institutionService.findOne((Long) session.getAttribute("selectedInstitutionId")));
+
 
         model.addAttribute("donation", donation);
 
@@ -177,12 +181,13 @@ public class DonationController {
         model.addAttribute("date", "");
         model.addAttribute("time", "");
         model.addAttribute("info", "");
-        model.addAttribute("selectedItemId", 0);
-        model.addAttribute("numberOfBags", 0);
-        model.addAttribute("selectedLocationId", 0);
-        model.addAttribute("selectedProfileId", 0);
+        model.addAttribute("selectedItemId", "");
+        model.addAttribute("numberOfBags", "");
+        model.addAttribute("selectedLocationId", "");
+        model.addAttribute("selectedProfileId", "");
         model.addAttribute("noMatch", false );
-        model.addAttribute("selectedInstitutionId", 0);
+        model.addAttribute("selectedInstitutionId", "");
+        model.addAttribute("donation", "");
 
         return "donation7";
     }
