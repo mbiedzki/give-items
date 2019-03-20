@@ -28,8 +28,11 @@ public class Donation {
     @OneToOne
     private Profile profile;
 
-    @OneToOne
-    private Institution institution;
+    @Column(name = "institution_id")
+    private Long institution;
+
+    @Column(name = "user_id")
+    private Long user;
 
     private String address;
 
@@ -77,12 +80,20 @@ public class Donation {
         this.profile = profile;
     }
 
-    public Institution getInstitution() {
+    public Long getInstitution() {
         return institution;
     }
 
-    public void setInstitution(Institution institution) {
+    public void setInstitution(Long institution) {
         this.institution = institution;
+    }
+
+    public Long getUser() {
+        return user;
+    }
+
+    public void setUser(Long user) {
+        this.user = user;
     }
 
     public String getAddress() {
@@ -149,6 +160,7 @@ public class Donation {
                 ", item=" + item +
                 ", profile=" + profile +
                 ", institution=" + institution +
+                ", user=" + user +
                 ", address='" + address + '\'' +
                 ", zip='" + zip + '\'' +
                 ", city='" + city + '\'' +

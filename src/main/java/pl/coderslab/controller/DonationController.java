@@ -13,7 +13,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@RequestMapping(path="/donation", produces = "text/html; charset=UTF-8")
+@RequestMapping(path = "/donation", produces = "text/html; charset=UTF-8")
 @SessionAttributes({"selectedItemId", "selectedProfileId", "selectedLocationId", "selectedInstitutionId",
         "selectedNumberOfBags", "noMatch", "donation", "selectedAddress", "selectedCity", "selectedZip", "selectedPhone",
         "selectedDate", "selectedTime", "selectedInfo"})
@@ -43,6 +43,11 @@ public class DonationController {
     @ModelAttribute("items")
     public List<Item> getItems() {
         return itemService.findAll();
+    }
+
+    @ModelAttribute("institutions")
+    public List<Institution> getInstitutions() {
+        return institutionService.findAll();
     }
 
     // add form 1 *******************************************************************************
@@ -82,7 +87,7 @@ public class DonationController {
     public String createDonation3(@RequestParam String chooseLocation, @RequestParam String chooseProfile, Model model, HttpSession session) {
         model.addAttribute("selectedLocationId", Long.parseLong(chooseLocation));
         model.addAttribute("selectedProfileId", Long.parseLong(chooseProfile));
-        model.addAttribute("noMatch", false );
+        model.addAttribute("noMatch", false);
         return "redirect:/donation/add/4";
     }
 
@@ -93,8 +98,8 @@ public class DonationController {
         Long profileId = (Long) session.getAttribute("selectedProfileId");
 
         //validation if no institution matches criteria
-        if(institutionService.findByLocationAndProfile(locationId, profileId).size()==0) {
-            model.addAttribute("noMatch", true );
+        if (institutionService.findByLocationAndProfile(locationId, profileId).size() == 0) {
+            model.addAttribute("noMatch", true);
             return "donation4";
         }
 
@@ -134,7 +139,6 @@ public class DonationController {
         model.addAttribute("selectedInfo", selInfo);
 
 
-
         Donation donation = new Donation();
 
         donation.setAddress(selAddress);
@@ -149,9 +153,9 @@ public class DonationController {
         donation.setNumberOfBags((Long) session.getAttribute("selectedNumberOfBags"));
 
         //check if there is matching institution
-
-        donation.setInstitution(institutionService.findOne((Long) session.getAttribute("selectedInstitutionId")));
-
+        if (!(boolean) session.getAttribute("noMatch")) {
+            donation.setInstitution((Long) session.getAttribute("selectedInstitutionId"));
+        }
 
         model.addAttribute("donation", donation);
 
@@ -167,6 +171,7 @@ public class DonationController {
 
     @RequestMapping("/add/6")
     public String createDonation6(@Valid Donation donation, Model model, HttpSession session) {
+        donation.setUser((Long) session.getAttribute("userId"));
         donationService.save(donation);
         return "redirect:/donation/add/7";
     }
@@ -175,18 +180,18 @@ public class DonationController {
     @GetMapping("/add/7")
     public String displayDonationForm7(Model model, HttpSession session) {
 
-        model.addAttribute("address", "");
-        model.addAttribute("city", "");
-        model.addAttribute("zip", "");
-        model.addAttribute("phone", "");
-        model.addAttribute("date", "");
-        model.addAttribute("time", "");
-        model.addAttribute("info", "");
+        model.addAttribute("selectedAddress", "");
+        model.addAttribute("selectedCity", "");
+        model.addAttribute("selectedZip", "");
+        model.addAttribute("selectedPhone", "");
+        model.addAttribute("selectedDate", "");
+        model.addAttribute("selectedTime", "");
+        model.addAttribute("selectedInfo", "");
         model.addAttribute("selectedItemId", "");
-        model.addAttribute("numberOfBags", "");
+        model.addAttribute("selectedNumberOfBags", "");
         model.addAttribute("selectedLocationId", "");
         model.addAttribute("selectedProfileId", "");
-        model.addAttribute("noMatch", false );
+        model.addAttribute("noMatch", false);
         model.addAttribute("selectedInstitutionId", "");
         model.addAttribute("donation", "");
 

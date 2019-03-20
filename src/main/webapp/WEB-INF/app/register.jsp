@@ -33,7 +33,9 @@
     <form method="post">
         <div class="form-group">
             <input type="email" name="email" value="${email}" placeholder="Email"/>
-
+        </div>
+        <div class="form-group">
+            <input type="text" name="fullName" value="${fullName}" placeholder="Imię i nazwisko"/>
         </div>
         <div class="form-group">
             <input type="password" name="password" value="${password}" placeholder="Hasło"/>

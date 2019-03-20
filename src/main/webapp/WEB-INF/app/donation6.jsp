@@ -14,7 +14,7 @@
 <header>
     <nav class="container container--70">
         <ul>
-            <li><a href="#" class="btn btn--without-border">Witaj ${email}</a></li>
+            <li><a href="#" class="btn btn--without-border">Witaj ${fullName}</a></li>
             <li><a href="${pageContext.request.contextPath}/#start" class="btn btn--without-border">Mój profil</a></li>
             <li><a href="${pageContext.request.contextPath}/#steps" class="btn btn--without-border">Moje zbiórki</a>
             </li>
@@ -40,7 +40,10 @@
 
             <div>
             <h1>
-                <p>Instytucja: <form:input size="40" path="institution.name" readonly="true"/></p>
+                <p>Instytucja: <form:input size="3" path="institution" readonly="true"/>
+                <c:forEach items="${institutions}" var="inst">
+                    <c:if test="${inst.id==selectedInstitutionId}">${inst.name}</c:if>
+                </c:forEach></p>
                 <p>Profil: <form:input readonly="true" path="profile.name"/></p>
                 <hr>
             </h1>

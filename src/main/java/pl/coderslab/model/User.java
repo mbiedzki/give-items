@@ -17,12 +17,11 @@ public class User {
     @Email(message = " Podaj poprawny adres email ! ")
     private String email;
 
+    private String fullName;
+
     private String password;
 
     private boolean admin;
-
-    @OneToMany
-    private List<Donation> donations;
 
     public Long getId() {
         return id;
@@ -34,6 +33,14 @@ public class User {
 
     public String getEmail() {
         return email;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public void setEmail(String email) {
@@ -56,19 +63,12 @@ public class User {
         this.admin = admin;
     }
 
-    public List<Donation> getDonations() {
-        return donations;
-    }
-
-    public void setDonations(List<Donation> donations) {
-        this.donations = donations;
-    }
-
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
                 ", email='" + email + '\'' +
+                ", fullName='" + fullName + '\'' +
                 ", password='" + password + '\'' +
                 ", admin=" + admin +
                 '}';

@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping(produces = "text/html; charset=UTF-8")
-@SessionAttributes({"userId", "admin", "email"})
+@SessionAttributes({"userId", "admin", "email", "fullName"})
 public class LoginController {
     @Autowired
     private UserService userService;
@@ -27,7 +27,8 @@ public class LoginController {
     }
 
     @RequestMapping("/login")
-    public String login(@RequestParam String email, @RequestParam String password, Model model, HttpSession session) {
+    public String login(@RequestParam String email, @RequestParam String password,
+                        Model model, HttpSession session) {
 
         model.addAttribute("loginError", false);
         model.addAttribute("emptyError", false);
@@ -62,6 +63,7 @@ public class LoginController {
         model.addAttribute("admin", userToVerify.isAdmin());
         model.addAttribute("userId", userToVerify.getId());
         model.addAttribute("email", userToVerify.getEmail());
+        model.addAttribute("fullName", userToVerify.getFullName());
         return "redirect:/donation/add/1";
     }
 
@@ -76,7 +78,8 @@ public class LoginController {
     }
 
     @RequestMapping("/register")
-    public String register(@RequestParam String email, @RequestParam String password, @RequestParam String password2, Model model, HttpSession session) {
+    public String register(@RequestParam String email, @RequestParam String password, @RequestParam String password2,
+                           @RequestParam String fullName, Model model, HttpSession session) {
 
         model.addAttribute("emptyError", false);
         model.addAttribute("passwordError", false);
@@ -88,6 +91,7 @@ public class LoginController {
             model.addAttribute("email", email);
             model.addAttribute("password", password);
             model.addAttribute("password2", password2);
+            model.addAttribute("fullname", fullName);
             return "register";
         }
 
@@ -97,6 +101,7 @@ public class LoginController {
             model.addAttribute("email", email);
             model.addAttribute("password", "");
             model.addAttribute("password2", "");
+            model.addAttribute("fullName", fullName);
             return "register";
         }
 
@@ -106,11 +111,13 @@ public class LoginController {
             model.addAttribute("email", email);
             model.addAttribute("password", password);
             model.addAttribute("password2", password2);
+            model.addAttribute("fullName", fullName);
             return "register";
         }
 
         User userToRegister = new User();
         userToRegister.setEmail(email);
+        userToRegister.setFullName(fullName);
         userToRegister.setAdmin(false);
         userToRegister.setPassword(userService.encryptPassword(password));
         userService.save(userToRegister);

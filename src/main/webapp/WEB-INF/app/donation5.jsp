@@ -25,7 +25,7 @@
 <header>
     <nav class="container container--70">
         <ul>
-            <li><a href="#" class="btn btn--without-border">Witaj ${email}</a></li>
+            <li><a href="#" class="btn btn--without-border">Witaj ${fullName}</a></li>
             <li><a href="${pageContext.request.contextPath}/#start" class="btn btn--without-border">Mój profil</a></li>
             <li><a href="${pageContext.request.contextPath}/#steps" class="btn btn--without-border">Moje zbiórki</a>
             </li>
