@@ -36,7 +36,7 @@
 
           <ul class="slogan--buttons">
             <li><a href="${pageContext.request.contextPath}/login" class="btn btn--large">Oddaj rzeczy</a></li>
-            <li><a href="${pageContext.request.contextPath}/login" class="btn btn--large">Zorganizuj zbiórkę</a></li>
+            <%--<li><a href="${pageContext.request.contextPath}/login" class="btn btn--large">Zorganizuj zbiórkę</a></li>--%>
           </ul>
         </div>
       </div>

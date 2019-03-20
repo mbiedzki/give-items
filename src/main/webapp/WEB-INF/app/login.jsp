@@ -28,14 +28,22 @@
       </nav>
     </header>
 
+    <div class="form--steps-instructions">
+      <div class="form--steps-container">
+        <p data-step="1" class="active">
+        <h1>Podaj swój adres email i hasło</h1>
+        </p>
+      </div>
+    </div>
+
     <section class="login-page">
       <h2>Zaloguj się</h2>
       <form method="post">
         <div class="form-group">
-          <input type="email" name="email" value="${email}" placeholder="Email" />
+          <input type="email" name="inputEmail" value="${email}" placeholder="Email" />
         </div>
         <div class="form-group">
-          <input type="password" name="password" value="${password}" placeholder="Hasło" />
+          <input type="password" name="inputPassword" value="${password}" placeholder="Hasło" />
           <a href="#" class="btn btn--small btn--without-border reset-password">Przypomnij hasło</a>
         </div>
 

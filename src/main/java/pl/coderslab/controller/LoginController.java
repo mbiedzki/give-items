@@ -27,35 +27,35 @@ public class LoginController {
     }
 
     @RequestMapping("/login")
-    public String login(@RequestParam String email, @RequestParam String password,
+    public String login(@RequestParam String inputEmail, @RequestParam String inputPassword,
                         Model model, HttpSession session) {
 
         model.addAttribute("loginError", false);
         model.addAttribute("emptyError", false);
 
         //all fields must be filled in
-        if(email.equals("") || password.equals("")) {
+        if(inputEmail.equals("") || inputPassword.equals("")) {
             model.addAttribute("emptyError", true);
-            model.addAttribute("email", email);
-            model.addAttribute("password", password);
+            model.addAttribute("email", inputEmail);
+            model.addAttribute("password", inputPassword);
             return "login";
         }
 
-        User userToVerify = userService.findUserByEmail(email);
+        User userToVerify = userService.findUserByEmail(inputEmail);
 
         //if email not found in database -> login error
         if(userToVerify==null) {
             model.addAttribute("loginError", true);
-            model.addAttribute("email", email);
-            model.addAttribute("password", password);
+            model.addAttribute("email", inputEmail);
+            model.addAttribute("password", inputPassword);
             return "login";
         }
 
         //if password does not match -> login error
-        if (!BCrypt.checkpw(password, userToVerify.getPassword())) {
+        if (!BCrypt.checkpw(inputPassword, userToVerify.getPassword())) {
             model.addAttribute("loginError", true);
-            model.addAttribute("email", email);
-            model.addAttribute("password", password);
+            model.addAttribute("email", inputEmail);
+            model.addAttribute("password", inputPassword);
             return "login";
         }
 
@@ -86,7 +86,7 @@ public class LoginController {
         model.addAttribute("duplicateEmailError", false);
 
         //all fields must be filled in
-        if(email.equals("") || password.equals("") || password2.equals("")) {
+        if(email.equals("") || password.equals("") || password2.equals("") || fullName.equals("")) {
             model.addAttribute("emptyError", true);
             model.addAttribute("email", email);
             model.addAttribute("password", password);
@@ -122,7 +122,25 @@ public class LoginController {
         userToRegister.setPassword(userService.encryptPassword(password));
         userService.save(userToRegister);
 
+        model.addAttribute("email", "");
+        model.addAttribute("userId", "");
+        model.addAttribute("admin", "");
+        model.addAttribute("fullName", "");
         return "redirect:/login";
+    }
+
+    //logout
+    //*************************************************************************************************************
+
+    @GetMapping("/logout")
+    public String displayLogout(Model model) {
+
+        model.addAttribute("email", "");
+        model.addAttribute("userId", "");
+        model.addAttribute("admin", "");
+        model.addAttribute("fullName", "");
+
+        return "redirect:/";
     }
 
 }
