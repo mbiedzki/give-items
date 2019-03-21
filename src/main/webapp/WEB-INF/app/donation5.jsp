@@ -76,7 +76,7 @@
 
                             <div class="form-group form-group--inline">
                                 <label>
-                                    Uwagi dla kuriera <textarea name="selInfo" rows="5">${selectedInfo}</textarea>
+                                    Uwagi dla kuriera <textarea name="selInfo" rows="5"><c:out value="${selectedInfo}"/></textarea>
                                 </label>
                             </div>
                         </div>
