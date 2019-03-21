@@ -1,5 +1,6 @@
 # give-items
 App for sharing stuff I don't need with others.
+
 My second app based on concept received from CodersLab front-ender. 
 Allows user to register, login and share stuff that he/she doesn't need anymore.
 
