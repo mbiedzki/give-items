@@ -9,23 +9,24 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title>Document</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/w3.css"/>
 </head>
 <body>
 <header>
 
 </header>
 
-<section class="login-page">
-    <h2>Twoje darowizny</h2>
+<section>
+    <h2>Twoje darowizny</h2><br>
 
 </section>
 
 
-<div class="form--steps-container">
-<h1>
-<table>
+<div class="w3-container">
+
+<table class="w3-table-all w3-border">
     <thead>
-    <tr class="form--steps-instructions">
+    <tr class="w3-amber w3-xlarge">
         <td>Data odbioru</td>
         <td>Miasto</td>
         <td>Rodzaj rzeczy</td>
@@ -35,23 +36,11 @@
     </thead>
     <tbody>
     <c:forEach items="${userDonations}" var="donation">
-        <tr>
-            <td>
-                    ${donation.pickupDate}
-            </td>
-            <td>
-                    ${donation.city}
-            </td>
-            <td>
-                <c:forEach items="${items}" var="item">
-                    <c:if test="${item.id==donation.item.id}">${item.name}</c:if>
-                </c:forEach>
-            </td>
-            <td>
-                <c:forEach items="${profiles}" var="profile">
-                <c:if test="${profile.id==donation.profile.id}">${profile.name}</c:if>
-                </c:forEach></p>
-            </td>
+        <tr align="left">
+            <td>${donation.pickupDate}</td>
+            <td>${donation.city}</td>
+            <td>${donation.item.name}</td>
+            <td>${donation.profile.name}</td>
             <td>
                 <c:forEach items="${institutions}" var="inst">
                     <c:if test="${inst.id==donation.institution}">${inst.name}</c:if>
@@ -61,10 +50,10 @@
     </c:forEach>
     </tbody>
 </table>
-</h1>
-    <div class="form-group form-group--buttons">
-        <a href="${pageContext.request.contextPath}/donation/add/1" class="btn">Powrót</a>
-    </div>
+<br>
+
+        <a href="${pageContext.request.contextPath}/donation/add/1" class="btn w3-large">Powrót</a>
+
 </div>
 
 </body>

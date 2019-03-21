@@ -33,9 +33,13 @@
                     <h3>Podaj liczbę 60l worków, w które spakowałeś/aś rzeczy:</h3>
 
                     <div class="form-group form-group--inline">
+
                         <label>
                             Liczba 60l worków:
-                            <input type="number" name="chooseBags" value="${selectedNumberOfBags}" step="1" required min="1"/>
+                            <c:if test="${selectedNumberOfBags==null}">
+                                <input type="number" name="chooseBags" value="1" step="1" required min="1"/></c:if>
+                            <c:if test="${selectedNumberOfBags!=null}">
+                            <input type="number" name="chooseBags" value="${selectedNumberOfBags}" step="1" required min="1"/></c:if>
                         </label>
                     </div>
 

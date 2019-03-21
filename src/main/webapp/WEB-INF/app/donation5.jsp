@@ -67,16 +67,16 @@
                         <div class="form-section--column">
                             <h4>Termin odbioru</h4>
                             <div class="form-group form-group--inline">
-                                <label> Data <input type="text" required class="datepicker" value="${selectedDate}" name="selDate"/> </label>
+                                <label> Data <input type="date" required value="${selectedDate}" placeholder="RRRR-MM-DD" required pattern="\d{4}-\d{2}-\d{2}" name="selDate"/> </label>
                             </div>
 
                             <div class="form-group form-group--inline">
-                                <label> Godzina <input type="text" required name="selTime" value="${selectedTime}" data-toggle="timepicker"/> </label>
+                                <label> Godzina <input type="time" required name="selTime" placeholder="GG:MM" required pattern="\d{2}:\d{2}" value="${selectedTime}" min="9:00" max="18:00"/> </label>
                             </div>
 
                             <div class="form-group form-group--inline">
                                 <label>
-                                    Uwagi dla kuriera <input type="text" name="selInfo" value="${selectedInfo}" size="25">
+                                    Uwagi dla kuriera <textarea name="selInfo" rows="5">${selectedInfo}</textarea>
                                 </label>
                             </div>
                         </div>

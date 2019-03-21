@@ -6,7 +6,7 @@
         <ul>
             <li><a href="#" class="btn btn--without-border">Witaj ${fullName}</a></li>
             <li><a href="${pageContext.request.contextPath}/user/edit" class="btn btn--without-border">Mój profil</a></li>
-            <li><a href="${pageContext.request.contextPath}/user/donations" class="btn btn--without-border">Moje zbiórki</a>
+            <li><a href="${pageContext.request.contextPath}/user/donations" class="btn btn--without-border">Moje darowizny</a>
             </li>
             <li><a href="${pageContext.request.contextPath}/logout" class="btn btn--without-border">Wyloguj</a></li>
         </ul>
