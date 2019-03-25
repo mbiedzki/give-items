@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
 import pl.coderslab.model.*;
 import pl.coderslab.service.*;
 
@@ -170,9 +171,24 @@ public class DonationController {
     }
 
     @RequestMapping("/add/6")
-    public String createDonation6(@Valid Donation donation, Model model, HttpSession session) {
+    public String createDonation6(@Valid Donation donation, Model model, HttpSession session, SessionStatus status) {
         donation.setUser((Long) session.getAttribute("userId"));
         donationService.save(donation);
+        session.removeAttribute("selectedAddress");
+        session.removeAttribute("selectedCity");
+        session.removeAttribute("selectedZip");
+        session.removeAttribute("selectedPhone");
+        session.removeAttribute("selectedDate");
+        session.removeAttribute("selectedTime");
+        session.removeAttribute("selectedInfo");
+        session.removeAttribute("selectedItemId");
+        session.removeAttribute("selectedNumberOfBags");
+        session.removeAttribute("selectedLocationId");
+        session.removeAttribute("selectedProfileId");
+        session.removeAttribute("noMatch");
+        session.removeAttribute("selectedInstitutionId");
+        session.removeAttribute("donation");
+        status.setComplete();
         return "redirect:/donation/add/7";
     }
 
@@ -180,20 +196,6 @@ public class DonationController {
     @GetMapping("/add/7")
     public String displayDonationForm7(Model model, HttpSession session) {
 
-        model.addAttribute("selectedAddress", "");
-        model.addAttribute("selectedCity", "");
-        model.addAttribute("selectedZip", "");
-        model.addAttribute("selectedPhone", "");
-        model.addAttribute("selectedDate", "");
-        model.addAttribute("selectedTime", "");
-        model.addAttribute("selectedInfo", "");
-        model.addAttribute("selectedItemId", "");
-        model.addAttribute("selectedNumberOfBags", "");
-        model.addAttribute("selectedLocationId", "");
-        model.addAttribute("selectedProfileId", "");
-        model.addAttribute("noMatch", false);
-        model.addAttribute("selectedInstitutionId", "");
-        model.addAttribute("donation", "");
 
         return "donation7";
     }

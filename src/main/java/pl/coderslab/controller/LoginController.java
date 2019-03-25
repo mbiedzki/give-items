@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
 import pl.coderslab.model.User;
 import pl.coderslab.service.UserService;
 import pl.coderslab.util.BCrypt;
@@ -79,7 +80,7 @@ public class LoginController {
 
     @RequestMapping("/register")
     public String register(@RequestParam String email, @RequestParam String password, @RequestParam String password2,
-                           @RequestParam String fullName, Model model, HttpSession session) {
+                           @RequestParam String fullName, Model model, HttpSession session, SessionStatus status) {
 
         model.addAttribute("emptyError", false);
         model.addAttribute("passwordError", false);
@@ -122,10 +123,13 @@ public class LoginController {
         userToRegister.setPassword(userService.encryptPassword(password));
         userService.save(userToRegister);
 
-        model.addAttribute("email", "");
-        model.addAttribute("userId", "");
-        model.addAttribute("admin", "");
-        model.addAttribute("fullName", "");
+        session.removeAttribute("email");
+        session.removeAttribute("userId");
+        session.removeAttribute("admin");
+        session.removeAttribute("fullName");
+        status.setComplete();
+        session.invalidate();
+
         return "redirect:/login";
     }
 
@@ -133,12 +137,14 @@ public class LoginController {
     //*************************************************************************************************************
 
     @GetMapping("/logout")
-    public String displayLogout(Model model) {
+    public String displayLogout(HttpSession session, SessionStatus status) {
 
-        model.addAttribute("email", "");
-        model.addAttribute("userId", "");
-        model.addAttribute("admin", "");
-        model.addAttribute("fullName", "");
+        session.removeAttribute("email");
+        session.removeAttribute("userId");
+        session.removeAttribute("admin");
+        session.removeAttribute("fullName");
+        status.setComplete();
+        session.invalidate();
 
         return "redirect:/";
     }
