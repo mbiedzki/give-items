@@ -31,33 +31,44 @@
     <div class="form--steps-instructions">
       <div class="form--steps-container">
         <p data-step="1" class="active">
-        <h1>Podaj swój adres email i hasło</h1>
+        <h1>Podaj adres email, na który zostanie wysłany link z nowym hasłem</h1>
         </p>
       </div>
     </div>
 
     <section class="login-page">
-      <h2>Zaloguj się</h2>
+      <h2>Ustaw nowe hasło</h2>
       <form method="post">
         <div class="form-group">
           <input type="email" name="inputEmail" value="${email}" placeholder="Email" />
         </div>
         <div class="form-group">
-          <input type="password" name="inputPassword" value="${password}" placeholder="Hasło" />
-          <a href="${pageContext.request.contextPath}/remind" class="btn btn--small btn--without-border reset-password">Zapomniałem hasła</a>
+          <button class="btn" type="submit">Nowe hasło</button>
         </div>
 
         <c:if test="${emptyError==true}">
-          <p class="alert"> Wypełnij wszystkie pola !</p>
+          <p class="alert"> Podaj adres email !</p>
         </c:if>
 
-        <c:if test="${loginError==true}">
-          <p class="alert"> Niepoprawny email lub hasło !</p>
+        <c:if test="${emailNotFound==true}">
+          <p class="alert"> Nie możemy znaleźć takiego adresu email !</p>
         </c:if>
+
+        <c:if test="${emailSent==true}">
+          <div class="form--steps-instructions">
+          <div class="form--steps-container">
+            <p class="active">
+            <h1>Wysłano nowe hasło na podany adres email !</h1>
+            </p>
+          </div>
+          </div>
+        </c:if>
+
+
 
         <div class="form-group form-group--buttons">
           <a href="${pageContext.request.contextPath}/register" class="btn btn--without-border">Załóż konto</a>
-          <button class="btn" type="submit">Zaloguj się</button> 
+          <a href="${pageContext.request.contextPath}/login" class="btn btn--without-border">Zaloguj się</a>
         </div>
       </form>
     </section>
