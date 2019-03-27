@@ -20,6 +20,7 @@ import static pl.coderslab.util.RandomAlphaString.randomAlphaNumeric;
 
 @Controller
 @RequestMapping(path = "/", produces = "text/html; charset=UTF-8")
+@SessionAttributes({"emptyError", "emailSent", "messFullName", "messEmail", "messText"})
 public class HomeController {
     @Autowired
     private DonationService donationService;
@@ -55,7 +56,10 @@ public class HomeController {
         //all fields must be filled in
         if (messageEmail.equals("") || messageFullName.equals("") || messageText.equals("")) {
             model.addAttribute("emptyError", true);
-            return "index";
+            model.addAttribute("messFullName", messageFullName);
+            model.addAttribute("messEmail", messageEmail);
+            model.addAttribute("messText", messageText);
+            return "redirect:/#contact";
         }
 
         //send email to app owner
@@ -63,8 +67,11 @@ public class HomeController {
                 "Wiadomość od : " + messageFullName + " , " + messageEmail + "\n\n" + messageText);
         model.addAttribute("emptyError", false);
         model.addAttribute("emailSent", true);
+        model.addAttribute("messFullName", "");
+        model.addAttribute("messEmail", "");
+        model.addAttribute("messText", "");
 
-        return "index";
+        return "redirect:/#contact";
     }
 
 

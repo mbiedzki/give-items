@@ -126,11 +126,11 @@
         <h3>Formularz kontaktowy</h3>
         <form method="post" class="form--contact">
             <div class="form-group form-group--50"><input type="text" name="messageFullName"
-                                                          placeholder="Imię i Nazwisko"/></div>
-            <div class="form-group form-group--50"><input type="email" name="messageEmail" placeholder="Adres email"/>
+                                                     value="${messFullName}"     placeholder="Imię i Nazwisko"/></div>
+            <div class="form-group form-group--50"><input type="email" name="messageEmail" value="${messEmail}" placeholder="Adres email"/>
             </div>
 
-            <div class="form-group"><textarea name="messageText" placeholder="Wiadomość" rows="1"></textarea></div>
+            <div class="form-group"><textarea name="messageText" placeholder="Wiadomość" rows="1">${messText}</textarea></div>
 
             <button class="btn" type="submit">Wyślij</button>
         </form>
