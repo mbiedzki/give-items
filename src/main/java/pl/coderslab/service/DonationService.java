@@ -35,5 +35,13 @@ public class DonationService {
         return donationRepository.findDonationsByUser(userId);
     }
 
+    public Long donatedBags() {
+        return donationRepository.donatedBags();
+    }
+
+    public Long donatedInstitutions() {
+        return donationRepository.donatedInstitutions();
+    }
+
 
 }

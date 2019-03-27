@@ -27,7 +27,7 @@ public class LoginController {
         return "login";
     }
 
-    @RequestMapping("/login")
+    @PostMapping("/login")
     public String login(@RequestParam String inputEmail, @RequestParam String inputPassword,
                         Model model, HttpSession session) {
 
@@ -78,7 +78,7 @@ public class LoginController {
         return "register";
     }
 
-    @RequestMapping("/register")
+    @PostMapping("/register")
     public String register(@RequestParam String email, @RequestParam String password, @RequestParam String password2,
                            @RequestParam String fullName, Model model, HttpSession session, SessionStatus status) {
 

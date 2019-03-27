@@ -3,10 +3,7 @@ package pl.coderslab.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import pl.coderslab.model.*;
 import pl.coderslab.service.*;
 
@@ -55,7 +52,7 @@ public class UserController {
         return "userEdit";
     }
 
-    @RequestMapping("/edit")
+    @PostMapping("/edit")
     public String editUser(@RequestParam String fullName, @RequestParam String email,
                            @RequestParam String password, @RequestParam String password2,
                            Model model, HttpSession session) {

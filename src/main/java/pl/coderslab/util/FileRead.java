@@ -9,8 +9,10 @@ public class FileRead {
 
     public static String[] getData() {
 
+        //in this file on server the data for email to be sent from is stored
+
         File file = new File("/usr/local/bin/data.txt");
-        String [] data = new String[2];
+        String[] data = new String[2];
 
         //scanner object reading file
 

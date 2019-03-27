@@ -58,7 +58,7 @@ public class DonationController {
         return "donation1";
     }
 
-    @RequestMapping("/add/1")
+    @PostMapping("/add/1")
     public String createDonation1(@RequestParam String chooseItem, Model model, HttpSession session) {
         model.addAttribute("selectedItemId", Long.parseLong(chooseItem));
         return "redirect:/donation/add/2";
@@ -71,7 +71,7 @@ public class DonationController {
         return "donation2";
     }
 
-    @RequestMapping("/add/2")
+    @PostMapping("/add/2")
     public String createDonation2(@RequestParam String chooseBags, Model model, HttpSession session) {
         model.addAttribute("selectedNumberOfBags", Long.parseLong(chooseBags));
         return "redirect:/donation/add/3";
@@ -84,7 +84,7 @@ public class DonationController {
         return "donation3";
     }
 
-    @RequestMapping("/add/3")
+    @PostMapping("/add/3")
     public String createDonation3(@RequestParam String chooseLocation, @RequestParam String chooseProfile, Model model, HttpSession session) {
         model.addAttribute("selectedLocationId", Long.parseLong(chooseLocation));
         model.addAttribute("selectedProfileId", Long.parseLong(chooseProfile));
@@ -108,7 +108,7 @@ public class DonationController {
         return "donation4";
     }
 
-    @RequestMapping("/add/4")
+    @PostMapping("/add/4")
     public String createDonation4(@RequestParam String chooseInstitution, Model model, HttpSession session) {
         model.addAttribute("selectedInstitutionId", Long.parseLong(chooseInstitution));
         return "redirect:/donation/add/5";
@@ -121,7 +121,7 @@ public class DonationController {
         return "donation5";
     }
 
-    @RequestMapping("/add/5")
+    @PostMapping("/add/5")
     public String createDonation5(@RequestParam String selAddress,
                                   @RequestParam String selCity,
                                   @RequestParam String selZip,
@@ -170,7 +170,7 @@ public class DonationController {
         return "donation6";
     }
 
-    @RequestMapping("/add/6")
+    @PostMapping("/add/6")
     public String createDonation6(@Valid Donation donation, Model model, HttpSession session, SessionStatus status) {
         donation.setUser((Long) session.getAttribute("userId"));
         donationService.save(donation);
