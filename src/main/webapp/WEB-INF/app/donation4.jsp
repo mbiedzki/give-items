@@ -42,7 +42,7 @@
 
                 <h3>Wybierz organizację, której chcesz pomóc:</h3>
                 <h1>
-                    <select name="chooseInstitution" size="4" required>
+                    <select name="chooseInstitution" style="width: 80%" size="4" required>
                         <c:if test="${noMatch==true}">
                             <option selected value="0" label="brak instytucji spełniającej kryteria"></option>
                         </c:if>

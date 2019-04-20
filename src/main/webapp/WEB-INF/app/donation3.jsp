@@ -33,7 +33,7 @@
                 <div data-step="3" class="active">
                     <h3>Lokalizacja:</h3>
                     <h1>
-                        <select name="chooseLocation" size="4" required>
+                        <select name="chooseLocation" style="width: 80%" size="4" required>
                             <c:forEach items="${locations}" var="location">
                                 <option value="${location.id}"  <c:if test="${location.id==selectedLocationId}">selected</c:if>   >${location.name}</option>
                             </c:forEach>
@@ -41,7 +41,7 @@
                     </h1>
                     <h3>Grupa docelowa:</h3>
                     <h1>
-                        <select name="chooseProfile" size="4" required>
+                        <select name="chooseProfile" style="width: 80%" size="4" required>
                             <c:forEach items="${profiles}" var="profile">
                                 <option value="${profile.id}"  <c:if test="${profile.id==selectedProfileId}">selected</c:if>   >${profile.name}</option>
                             </c:forEach>

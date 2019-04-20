@@ -34,12 +34,10 @@
     </nav>
 
 
-
-
     <div class="slogan container container--90">
         <div class="slogan--item">
             <h2>
-                ${donatedBags} oddanych worków,
+                ${donatedBags} oddanych worków,<br/>
                 ${donatedInstitutions} wsparte organizacje !
             </h2>
             <h1>
@@ -54,7 +52,6 @@
         </div>
     </div>
 </header>
-
 
 
 <section class="steps" id="steps">
@@ -126,11 +123,13 @@
         <h3>Formularz kontaktowy</h3>
         <form method="post" class="form--contact">
             <div class="form-group form-group--50"><input type="text" name="messageFullName"
-                                                     value="${messFullName}"     placeholder="Imię i Nazwisko"/></div>
-            <div class="form-group form-group--50"><input type="email" name="messageEmail" value="${messEmail}" placeholder="Adres email"/>
+                                                          value="${messFullName}" placeholder="Imię i Nazwisko"/></div>
+            <div class="form-group form-group--50"><input type="email" name="messageEmail" value="${messEmail}"
+                                                          placeholder="Adres email"/>
             </div>
 
-            <div class="form-group"><textarea name="messageText" placeholder="Wiadomość" rows="1">${messText}</textarea></div>
+            <div class="form-group"><textarea name="messageText" placeholder="Wiadomość" rows="1">${messText}</textarea>
+            </div>
 
             <button class="btn" type="submit">Wyślij</button>
         </form>
@@ -155,9 +154,10 @@
         <span class="bottom-line--copy">Copyright &copy; 2018</span>
         <div class="bottom-line--icons">
             <a href="#" class="btn btn--small"><img
-                    src="${pageContext.request.contextPath}/resources/images/icon-facebook.svg"/></a> <a href="#"
-                                                                                                         class="btn btn--small"><img
-                src="${pageContext.request.contextPath}/resources/images/icon-instagram.svg"/></a>
+                    src="${pageContext.request.contextPath}/resources/images/icon-facebook.svg"/></a>
+            <a href="#"
+               class="btn btn--small"><img
+                    src="${pageContext.request.contextPath}/resources/images/icon-instagram.svg"/></a>
         </div>
     </div>
 </footer>
