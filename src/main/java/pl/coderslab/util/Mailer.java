@@ -12,7 +12,7 @@ import javax.mail.internet.MimeMultipart;
 import java.util.Properties;
 
 public class Mailer {
-    public static void send(String recipientAddress, String subject, String message){
+    public static void send(String recipientAddress, String subject, String message) {
         //Get properties object
         Properties props = new Properties();
         props.put("mail.smtp.auth", true);
@@ -52,14 +52,16 @@ public class Mailer {
             attachmentBodyPart.setFileName("Test.pdf"); // ex : "test.pdf"*/
 
             multipart.addBodyPart(textBodyPart);  // add the text part
-           /* multipart.addBodyPart(attachmentBodyPart); // add the attachement part*/
+            /* multipart.addBodyPart(attachmentBodyPart); // add the attachement part*/
 
             msg.setContent(multipart);
             Transport.send(msg);
 
             System.out.println("message sent successfully");
 
-        } catch (MessagingException e) {throw new RuntimeException(e);}
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 

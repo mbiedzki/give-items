@@ -62,7 +62,7 @@ public class UserController {
         model.addAttribute("duplicateEmailError", false);
 
         //fullName and email fields must be filled in
-        if(email.equals("") || fullName.equals("")) {
+        if (email.equals("") || fullName.equals("")) {
             model.addAttribute("emptyError", true);
             model.addAttribute("email", email);
             model.addAttribute("fullname", fullName);
@@ -84,8 +84,9 @@ public class UserController {
         userToEdit.setFullName(fullName);
 
         //if password not empty and both passwords the same (checked earlier) setup password
-        if(!password.equals("")) {
-        userToEdit.setPassword(userService.encryptPassword(password));}
+        if (!password.equals("")) {
+            userToEdit.setPassword(userService.encryptPassword(password));
+        }
 
         userService.save(userToEdit);
 

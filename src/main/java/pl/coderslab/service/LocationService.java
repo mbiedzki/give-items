@@ -14,7 +14,9 @@ public class LocationService {
     @Autowired
     private LocationRepository locationRepository;
 
-    public void save(Location location) {locationRepository.save(location); }
+    public void save(Location location) {
+        locationRepository.save(location);
+    }
 
     public void delete(Long id) {
         locationRepository.delete(id);
@@ -24,5 +26,7 @@ public class LocationService {
         return locationRepository.findOne(id);
     }
 
-    public List<Location> findAll() { return locationRepository.findAll(); }
+    public List<Location> findAll() {
+        return locationRepository.findAll();
+    }
 }

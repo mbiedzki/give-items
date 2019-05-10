@@ -15,7 +15,9 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public void save(User user) { userRepository.save(user); }
+    public void save(User user) {
+        userRepository.save(user);
+    }
 
     public void delete(Long id) {
         userRepository.delete(id);
@@ -25,7 +27,9 @@ public class UserService {
         return userRepository.findOne(id);
     }
 
-    public List<User> findAll() { return userRepository.findAll(); }
+    public List<User> findAll() {
+        return userRepository.findAll();
+    }
 
     public String encryptPassword(String password) {
         return BCrypt.hashpw(password, BCrypt.gensalt());

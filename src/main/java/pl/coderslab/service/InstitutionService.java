@@ -14,7 +14,9 @@ public class InstitutionService {
     @Autowired
     private InstitutionRepository institutionRepository;
 
-    public void save(Institution institution) {institutionRepository.save(institution); }
+    public void save(Institution institution) {
+        institutionRepository.save(institution);
+    }
 
     public void delete(Long id) {
         institutionRepository.delete(id);
@@ -24,7 +26,9 @@ public class InstitutionService {
         return institutionRepository.findOne(id);
     }
 
-    public List<Institution> findAll() { return institutionRepository.findAll(); }
+    public List<Institution> findAll() {
+        return institutionRepository.findAll();
+    }
 
     public List<Institution> findByLocationAndProfile(Long locationId, Long profileId) {
 

@@ -14,7 +14,9 @@ public class ProfileService {
     @Autowired
     private ProfileRepository profileRepository;
 
-    public void save(Profile profile) {profileRepository.save(profile); }
+    public void save(Profile profile) {
+        profileRepository.save(profile);
+    }
 
     public void delete(Long id) {
         profileRepository.delete(id);
@@ -24,5 +26,7 @@ public class ProfileService {
         return profileRepository.findOne(id);
     }
 
-    public List<Profile> findAll() { return profileRepository.findAll(); }
+    public List<Profile> findAll() {
+        return profileRepository.findAll();
+    }
 }

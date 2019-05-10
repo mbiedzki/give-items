@@ -34,7 +34,8 @@
                 <h1>
                     <select name="chooseItem" style="width: 80%" size="4" required>
                         <c:forEach items="${items}" var="item">
-                        <option value="${item.id}"  <c:if test="${item.id==selectedItemId}">selected</c:if>   >${item.name}</option>
+                            <option value="${item.id}"
+                                    <c:if test="${item.id==selectedItemId}">selected</c:if>   >${item.name}</option>
                         </c:forEach>
                     </select>
                 </h1>

@@ -25,7 +25,8 @@
                 </c:if>
                 <c:if test="${noMatch==true}">
             <h3>Na podstawie Twoich kryteriów nie znaleźliźmy żadnej organizacji w naszej bazie danych.
-                Podaj pozostałe dane, a my postaramy się znaleźć odpowiednią organizację - o wszystkim poinformujemy
+                Podaj pozostałe dane, a my postaramy się znaleźć odpowiednią organizację -
+                o wszystkim poinformujemy
                 !</h3>
             </c:if>
             </p>

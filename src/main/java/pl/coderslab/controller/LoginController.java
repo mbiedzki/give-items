@@ -35,7 +35,7 @@ public class LoginController {
         model.addAttribute("emptyError", false);
 
         //all fields must be filled in
-        if(inputEmail.equals("") || inputPassword.equals("")) {
+        if (inputEmail.equals("") || inputPassword.equals("")) {
             model.addAttribute("emptyError", true);
             model.addAttribute("email", inputEmail);
             model.addAttribute("password", inputPassword);
@@ -45,7 +45,7 @@ public class LoginController {
         User userToVerify = userService.findUserByEmail(inputEmail);
 
         //if email not found in database -> login error
-        if(userToVerify==null) {
+        if (userToVerify == null) {
             model.addAttribute("loginError", true);
             model.addAttribute("email", inputEmail);
             model.addAttribute("password", inputPassword);
@@ -69,11 +69,10 @@ public class LoginController {
     }
 
 
-
     //registration
     //*************************************************************************************************************
 
-   @GetMapping("/register")
+    @GetMapping("/register")
     public String displayRegister() {
         return "register";
     }
@@ -87,7 +86,7 @@ public class LoginController {
         model.addAttribute("duplicateEmailError", false);
 
         //all fields must be filled in
-        if(email.equals("") || password.equals("") || password2.equals("") || fullName.equals("")) {
+        if (email.equals("") || password.equals("") || password2.equals("") || fullName.equals("")) {
             model.addAttribute("emptyError", true);
             model.addAttribute("email", email);
             model.addAttribute("password", password);
@@ -107,7 +106,7 @@ public class LoginController {
         }
 
         //email must be unique from existing in database
-        if(userService.findUserByEmail(email)!=null) {
+        if (userService.findUserByEmail(email) != null) {
             model.addAttribute("duplicateEmailError", true);
             model.addAttribute("email", email);
             model.addAttribute("password", password);

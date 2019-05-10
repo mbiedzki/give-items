@@ -13,9 +13,9 @@
 <body>
 <%@include file="userHeader.jsp" %>
 
-    <section class="form--steps">
-        <div class="form--steps-instructions">
-            <div class="form--steps-container">
+<section class="form--steps">
+    <div class="form--steps-instructions">
+        <div class="form--steps-container">
 
 
             <div data-step="7">
@@ -24,12 +24,12 @@
                     informacje o odbiorze.
                 </h2>
             </div>
-            </div>
         </div>
-    </section>
+    </div>
+</section>
 
 <div align="center">
-<h1> <a href="${pageContext.request.contextPath}/donation/add/1" class="btn">Kolejna darowizna ?</a></h1>
+    <h1><a href="${pageContext.request.contextPath}/donation/add/1" class="btn">Kolejna darowizna ?</a></h1>
 </div>
 
 </body>

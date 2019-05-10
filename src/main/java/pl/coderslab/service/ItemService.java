@@ -15,7 +15,9 @@ public class ItemService {
     @Autowired
     private ItemRepository itemRepository;
 
-    public void save(Item item) {itemRepository.save(item); }
+    public void save(Item item) {
+        itemRepository.save(item);
+    }
 
     public void delete(Long id) {
         itemRepository.delete(id);
@@ -25,5 +27,7 @@ public class ItemService {
         return itemRepository.findOne(id);
     }
 
-    public List<Item> findAll() { return itemRepository.findAll(); }
+    public List<Item> findAll() {
+        return itemRepository.findAll();
+    }
 }

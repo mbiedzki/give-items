@@ -20,9 +20,11 @@
 
         <ul>
             <li><a href="${pageContext.request.contextPath}/#start" class="btn btn--without-border">Start</a></li>
-            <li><a href="${pageContext.request.contextPath}/#steps" class="btn btn--without-border">O co chodzi?</a></li>
+            <li><a href="${pageContext.request.contextPath}/#steps" class="btn btn--without-border">O co chodzi?</a>
+            </li>
             <li><a href="${pageContext.request.contextPath}/#about" class="btn btn--without-border">O nas</a></li>
-            <li><a href="${pageContext.request.contextPath}/#fundations" class="btn btn--without-border">Fundacje i organizacje</a></li>
+            <li><a href="${pageContext.request.contextPath}/#fundations" class="btn btn--without-border">Fundacje i
+                organizacje</a></li>
             <li><a href="${pageContext.request.contextPath}/#contact" class="btn btn--without-border">Kontakt</a></li>
         </ul>
     </nav>

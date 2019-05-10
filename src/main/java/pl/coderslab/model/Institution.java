@@ -1,10 +1,11 @@
 package pl.coderslab.model;
 
 import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.*;
 
 @Entity
-@Table(name="institutions")
+@Table(name = "institutions")
 public class Institution {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
