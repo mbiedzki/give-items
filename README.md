@@ -4,5 +4,5 @@ Allows user to register, login and share stuff selecting: type of items, locatio
 
 I received some front end concept and implemented full backend with strong modification of front.
 
-Go to: http://biedzki.pl/give-items-1.0/ to enjoy !
+External server: https://biedzki.pl/give-items-1.0/
 
